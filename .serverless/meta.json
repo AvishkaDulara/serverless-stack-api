@@ -1,0 +1,197 @@
+{
+  "/home/avishka/serverless/notes-api": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.19",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "aws": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "service": "notes-api",
+            "package": {
+              "individually": true
+            },
+            "plugins": [
+              "serverless-bundle",
+              "serverless-offline",
+              "serverless-dotenv-plugin"
+            ],
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs12.x",
+              "stage": "dev",
+              "region": "us-east-1",
+              "environment": {
+                "tableName": "notes"
+              },
+              "iamRoleStatements": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:Scan",
+                    "dynamodb:Query",
+                    "dynamodb:GetItem",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:DeleteItem",
+                    "dynamodb:DescribeTable"
+                  ],
+                  "Resource": "arn:aws:dynamodb:us-east-1:*:*"
+                }
+              ],
+              "versionFunctions": true
+            },
+            "functions": {
+              "hello": {
+                "handler": "handler.hello",
+                "events": [
+                  {
+                    "http": {
+                      "path": "hello",
+                      "method": "get"
+                    }
+                  }
+                ]
+              },
+              "create": {
+                "handler": "create.main",
+                "events": [
+                  {
+                    "http": {
+                      "path": "notes",
+                      "method": "post"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "configFileDirPath": "/home/avishka/serverless/notes-api",
+          "config": {
+            "type": "aws"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "isDefaultConfig": true
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "/home/avishka/serverless/notes-api",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "notes-api",
+      "package": {
+        "individually": true
+      },
+      "plugins": [
+        "serverless-bundle",
+        "serverless-offline",
+        "serverless-dotenv-plugin"
+      ],
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs12.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "environment": {
+          "tableName": "notes"
+        },
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:Scan",
+              "dynamodb:Query",
+              "dynamodb:GetItem",
+              "dynamodb:PutItem",
+              "dynamodb:UpdateItem",
+              "dynamodb:DeleteItem",
+              "dynamodb:DescribeTable"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:*:*"
+          }
+        ],
+        "versionFunctions": true
+      },
+      "functions": {
+        "hello": {
+          "handler": "handler.hello",
+          "events": [
+            {
+              "http": {
+                "path": "hello",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "create": {
+          "handler": "create.main",
+          "events": [
+            {
+              "http": {
+                "path": "notes",
+                "method": "post"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "serviceRawFile": "service: notes-api\n\n# Create an optimized package for our functions \npackage:\n  individually: true\n\nplugins:\n  - serverless-bundle\n  - serverless-offline\n  - serverless-dotenv-plugin # Load .env as environment variables\n\nprovider:\n  name: aws\n  runtime: nodejs12.x\n  stage: dev\n  region: us-east-1\n\n  environment:\n    tableName: notes\n\n  iamRoleStatements:\n    - Effect: Allow\n      Action: \n        - dynamodb:Scan\n        - dynamodb:Query\n        - dynamodb:GetItem\n        - dynamodb:PutItem\n        - dynamodb:UpdateItem\n        - dynamodb:DeleteItem\n        - dynamodb:DescribeTable\n      Resource: \"arn:aws:dynamodb:us-east-1:*:*\"\n\nfunctions:\n  hello:\n    handler: handler.hello\n    events:\n      - http:\n          path: hello\n          method: get\n\n  create:\n    handler: create.main\n    events:\n      - http:\n          path: notes\n          method: post\n\n",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "error": {
+      "message": "Serverless plugin \"serverless-bundle\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.",
+      "stack": "ServerlessError2: Serverless plugin \"serverless-bundle\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.\n    at PluginManager.resolveServicePlugins (file:///home/avishka/.serverless/releases/4.1.19/package/dist/sf-core.js:854:2669)\n    at async PluginManager.loadAllPlugins (file:///home/avishka/.serverless/releases/4.1.19/package/dist/sf-core.js:854:1293)\n    at async Serverless.init (file:///home/avishka/.serverless/releases/4.1.19/package/dist/sf-core.js:861:9760)\n    at async runFramework (file:///home/avishka/.serverless/releases/4.1.19/package/dist/sf-core.js:909:880)\n    at async route (file:///home/avishka/.serverless/releases/4.1.19/package/dist/sf-core.js:920:16304)\n    at async Object.run2 [as run] (file:///home/avishka/.serverless/releases/4.1.19/package/dist/sf-core.js:920:16702)\n    at async run3 (file:///home/avishka/.serverless/releases/4.1.19/package/dist/sf-core.js:920:17962)",
+      "code": "PLUGIN_NOT_FOUND"
+    },
+    "params": {},
+    "machineId": "6d8da1fbb3b4301df9301c574e0407c5",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "eb7e9313-3917-4a3b-9061-9aba10cd3f92",
+    "orgName": "avsihkadulara23",
+    "userId": "LSjG7rk0m221Cd8NTR",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "avsihkadulara23",
+    "subscription": null,
+    "userEmail": "avishkadulara9@gmail.com",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "520539193170",
+    "versionSf": "4.1.19",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:520539193170:stack/my-serverless-project-dev/ec0dcbb0-d7df-11ee-9da6-0eb108a0e049",
+    "serviceProviderAwsCfStackCreated": "2024-03-01T15:25:23.380Z",
+    "serviceProviderAwsCfStackUpdated": "2024-06-07T07:30:07.179Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "HelloLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:520539193170:function:my-serverless-project-dev-hello:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-my-serverless-project-dev-HelloLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "my-serverless-project-dev-serverlessdeploymentbuck-0izycrygvjhx",
+        "ExportName": "sls-my-serverless-project-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  }
+}
