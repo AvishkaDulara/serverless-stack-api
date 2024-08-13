@@ -1,621 +1,17 @@
 {
   "/home/avishka/serverless/notes-api": {
     "versionSfCore": null,
-    "versionFramework": "4.1.19",
+    "versionFramework": "4.1.21",
     "isWithinCompose": false,
     "isCompose": false,
     "composeOrgName": null,
-    "composeResolverProviders": {
-      "aws": {
-        "instance": {
-          "credentials": "<REDACTED>",
-          "serviceConfigFile": {
-            "service": "notes-api",
-            "package": {
-              "individually": true,
-              "artifactsS3KeyDirname": "serverless/notes-api/dev/code-artifacts"
-            },
-            "plugins": [
-              "serverless-offline",
-              "serverless-dotenv-plugin"
-            ],
-            "custom": {
-              "stage": "dev",
-              "sstApp": "dev-notes-infra"
-            },
-            "provider": {
-              "name": "aws",
-              "runtime": "nodejs16.x",
-              "stage": "dev",
-              "region": "us-east-1",
-              "environment": {
-                "tableName": "notes",
-                "stripeSecretKey": "<REDACTED>",
-                "STRIPE_SECRET_KEY": "<REDACTED>"
-              },
-              "iamRoleStatements": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "dynamodb:Scan",
-                    "dynamodb:Query",
-                    "dynamodb:GetItem",
-                    "dynamodb:PutItem",
-                    "dynamodb:UpdateItem",
-                    "dynamodb:DeleteItem",
-                    "dynamodb:DescribeTable"
-                  ],
-                  "Resource": "arn:aws:dynamodb:us-east-1:*:*"
-                }
-              ],
-              "versionFunctions": true
-            },
-            "functions": {
-              "hello": {
-                "handler": "handler.hello",
-                "events": [
-                  {
-                    "http": {
-                      "path": "hello",
-                      "method": "get"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-hello"
-              },
-              "create": {
-                "handler": "create.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-create"
-              },
-              "get": {
-                "handler": "get.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-get"
-              },
-              "list": {
-                "handler": "list.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-list"
-              },
-              "update": {
-                "handler": "update.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "put",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-update"
-              },
-              "delete": {
-                "handler": "delete.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "delete",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-delete"
-              },
-              "billing": {
-                "handler": "billing.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "billing",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-billing"
-              }
-            }
-          },
-          "configFileDirPath": "/home/avishka/serverless/notes-api",
-          "config": {
-            "type": "aws"
-          },
-          "options": {
-            "function": "create",
-            "path": "mocks/create-event.json"
-          },
-          "stage": "dev",
-          "dashboard": null,
-          "isDefaultConfig": true
-        },
-        "resolvers": {}
-      },
-      "opt": {
-        "instance": {
-          "credentials": "<REDACTED>",
-          "serviceConfigFile": {
-            "service": "notes-api",
-            "package": {
-              "individually": true,
-              "artifactsS3KeyDirname": "serverless/notes-api/dev/code-artifacts"
-            },
-            "plugins": [
-              "serverless-offline",
-              "serverless-dotenv-plugin"
-            ],
-            "custom": {
-              "stage": "dev",
-              "sstApp": "dev-notes-infra"
-            },
-            "provider": {
-              "name": "aws",
-              "runtime": "nodejs16.x",
-              "stage": "dev",
-              "region": "us-east-1",
-              "environment": {
-                "tableName": "notes",
-                "stripeSecretKey": "<REDACTED>",
-                "STRIPE_SECRET_KEY": "<REDACTED>"
-              },
-              "iamRoleStatements": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "dynamodb:Scan",
-                    "dynamodb:Query",
-                    "dynamodb:GetItem",
-                    "dynamodb:PutItem",
-                    "dynamodb:UpdateItem",
-                    "dynamodb:DeleteItem",
-                    "dynamodb:DescribeTable"
-                  ],
-                  "Resource": "arn:aws:dynamodb:us-east-1:*:*"
-                }
-              ],
-              "versionFunctions": true
-            },
-            "functions": {
-              "hello": {
-                "handler": "handler.hello",
-                "events": [
-                  {
-                    "http": {
-                      "path": "hello",
-                      "method": "get"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-hello"
-              },
-              "create": {
-                "handler": "create.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-create"
-              },
-              "get": {
-                "handler": "get.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-get"
-              },
-              "list": {
-                "handler": "list.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-list"
-              },
-              "update": {
-                "handler": "update.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "put",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-update"
-              },
-              "delete": {
-                "handler": "delete.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "delete",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-delete"
-              },
-              "billing": {
-                "handler": "billing.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "billing",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-billing"
-              }
-            }
-          },
-          "configFileDirPath": "/home/avishka/serverless/notes-api",
-          "config": {
-            "type": "opt"
-          },
-          "options": {
-            "function": "create",
-            "path": "mocks/create-event.json"
-          },
-          "stage": "dev",
-          "dashboard": null
-        },
-        "resolvers": {}
-      },
-      "self": {
-        "instance": {
-          "credentials": "<REDACTED>",
-          "serviceConfigFile": {
-            "service": "notes-api",
-            "package": {
-              "individually": true,
-              "artifactsS3KeyDirname": "serverless/notes-api/dev/code-artifacts"
-            },
-            "plugins": [
-              "serverless-offline",
-              "serverless-dotenv-plugin"
-            ],
-            "custom": {
-              "stage": "dev",
-              "sstApp": "dev-notes-infra"
-            },
-            "provider": {
-              "name": "aws",
-              "runtime": "nodejs16.x",
-              "stage": "dev",
-              "region": "us-east-1",
-              "environment": {
-                "tableName": "notes",
-                "stripeSecretKey": "<REDACTED>",
-                "STRIPE_SECRET_KEY": "<REDACTED>"
-              },
-              "iamRoleStatements": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "dynamodb:Scan",
-                    "dynamodb:Query",
-                    "dynamodb:GetItem",
-                    "dynamodb:PutItem",
-                    "dynamodb:UpdateItem",
-                    "dynamodb:DeleteItem",
-                    "dynamodb:DescribeTable"
-                  ],
-                  "Resource": "arn:aws:dynamodb:us-east-1:*:*"
-                }
-              ],
-              "versionFunctions": true
-            },
-            "functions": {
-              "hello": {
-                "handler": "handler.hello",
-                "events": [
-                  {
-                    "http": {
-                      "path": "hello",
-                      "method": "get"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-hello"
-              },
-              "create": {
-                "handler": "create.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-create"
-              },
-              "get": {
-                "handler": "get.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-get"
-              },
-              "list": {
-                "handler": "list.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-list"
-              },
-              "update": {
-                "handler": "update.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "put",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-update"
-              },
-              "delete": {
-                "handler": "delete.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "delete",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-delete"
-              },
-              "billing": {
-                "handler": "billing.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "billing",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-billing"
-              }
-            }
-          },
-          "configFileDirPath": "/home/avishka/serverless/notes-api",
-          "config": {
-            "type": "self"
-          },
-          "options": {
-            "function": "create",
-            "path": "mocks/create-event.json"
-          },
-          "stage": "dev",
-          "dashboard": null
-        },
-        "resolvers": {}
-      },
-      "env": {
-        "instance": {
-          "credentials": "<REDACTED>",
-          "serviceConfigFile": {
-            "service": "notes-api",
-            "package": {
-              "individually": true,
-              "artifactsS3KeyDirname": "serverless/notes-api/dev/code-artifacts"
-            },
-            "plugins": [
-              "serverless-offline",
-              "serverless-dotenv-plugin"
-            ],
-            "custom": {
-              "stage": "dev",
-              "sstApp": "dev-notes-infra"
-            },
-            "provider": {
-              "name": "aws",
-              "runtime": "nodejs16.x",
-              "stage": "dev",
-              "region": "us-east-1",
-              "environment": {
-                "tableName": "notes",
-                "stripeSecretKey": "<REDACTED>",
-                "STRIPE_SECRET_KEY": "<REDACTED>"
-              },
-              "iamRoleStatements": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "dynamodb:Scan",
-                    "dynamodb:Query",
-                    "dynamodb:GetItem",
-                    "dynamodb:PutItem",
-                    "dynamodb:UpdateItem",
-                    "dynamodb:DeleteItem",
-                    "dynamodb:DescribeTable"
-                  ],
-                  "Resource": "arn:aws:dynamodb:us-east-1:*:*"
-                }
-              ],
-              "versionFunctions": true
-            },
-            "functions": {
-              "hello": {
-                "handler": "handler.hello",
-                "events": [
-                  {
-                    "http": {
-                      "path": "hello",
-                      "method": "get"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-hello"
-              },
-              "create": {
-                "handler": "create.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-create"
-              },
-              "get": {
-                "handler": "get.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-get"
-              },
-              "list": {
-                "handler": "list.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes",
-                      "method": "get",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-list"
-              },
-              "update": {
-                "handler": "update.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "put",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-update"
-              },
-              "delete": {
-                "handler": "delete.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "notes/{id}",
-                      "method": "delete",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-delete"
-              },
-              "billing": {
-                "handler": "billing.main",
-                "events": [
-                  {
-                    "http": {
-                      "path": "billing",
-                      "method": "post",
-                      "authorizer": "aws_iam"
-                    }
-                  }
-                ],
-                "name": "notes-api-dev-billing"
-              }
-            }
-          },
-          "configFileDirPath": "/home/avishka/serverless/notes-api",
-          "config": {
-            "type": "env"
-          },
-          "options": {
-            "function": "create",
-            "path": "mocks/create-event.json"
-          },
-          "stage": "dev",
-          "dashboard": null
-        },
-        "resolvers": {}
-      }
-    },
     "composeServiceName": null,
     "servicePath": "/home/avishka/serverless/notes-api",
     "serviceConfigFileName": "serverless.yml",
     "service": {
       "service": "notes-api",
       "package": {
-        "individually": true,
-        "artifactsS3KeyDirname": "serverless/notes-api/dev/code-artifacts"
+        "individually": true
       },
       "plugins": [
         "serverless-offline",
@@ -632,8 +28,7 @@
         "region": "us-east-1",
         "environment": {
           "tableName": "notes",
-          "stripeSecretKey": "<REDACTED>",
-          "STRIPE_SECRET_KEY": "<REDACTED>"
+          "stripeSecretKey": "<REDACTED>"
         },
         "iamRoleStatements": [
           {
@@ -649,8 +44,7 @@
             ],
             "Resource": "arn:aws:dynamodb:us-east-1:*:*"
           }
-        ],
-        "versionFunctions": true
+        ]
       },
       "functions": {
         "hello": {
@@ -662,8 +56,7 @@
                 "method": "get"
               }
             }
-          ],
-          "name": "notes-api-dev-hello"
+          ]
         },
         "create": {
           "handler": "create.main",
@@ -675,8 +68,7 @@
                 "authorizer": "aws_iam"
               }
             }
-          ],
-          "name": "notes-api-dev-create"
+          ]
         },
         "get": {
           "handler": "get.main",
@@ -688,8 +80,7 @@
                 "authorizer": "aws_iam"
               }
             }
-          ],
-          "name": "notes-api-dev-get"
+          ]
         },
         "list": {
           "handler": "list.main",
@@ -701,8 +92,7 @@
                 "authorizer": "aws_iam"
               }
             }
-          ],
-          "name": "notes-api-dev-list"
+          ]
         },
         "update": {
           "handler": "update.main",
@@ -714,8 +104,7 @@
                 "authorizer": "aws_iam"
               }
             }
-          ],
-          "name": "notes-api-dev-update"
+          ]
         },
         "delete": {
           "handler": "delete.main",
@@ -727,8 +116,7 @@
                 "authorizer": "aws_iam"
               }
             }
-          ],
-          "name": "notes-api-dev-delete"
+          ]
         },
         "billing": {
           "handler": "billing.main",
@@ -740,8 +128,7 @@
                 "authorizer": "aws_iam"
               }
             }
-          ],
-          "name": "notes-api-dev-billing"
+          ]
         }
       }
     },
@@ -755,10 +142,10 @@
       "path": "mocks/create-event.json"
     },
     "error": {
-      "message": "AWS credentials missing or invalid. Run \"serverless\" to set up AWS credentials, or learn more in our docs: http://slss.io/aws-creds-setup. Original error from AWS: Could not load credentials from any providers",
-      "code": "AWS_CREDENTIALS_MISSING"
+      "message": "Cannot resolve '${env:STRIPE_SECRET_KEY}' variable at 'provider.environment.stripeSecretKey'. None of the variables returned a value and no default value was provided. Please check your variable definitions or provide a default value.",
+      "stack": "Error: Cannot resolve '${env:STRIPE_SECRET_KEY}' variable at 'provider.environment.stripeSecretKey'. None of the variables returned a value and no default value was provided. Please check your variable definitions or provide a default value.\n    at _ResolverManager.resolve (file:///home/avishka/.serverless/releases/4.1.21/package/dist/sf-core.js:958:48467)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async #handlePlaceholderNode (file:///home/avishka/.serverless/releases/4.1.21/package/dist/sf-core.js:958:47080)\n    at async file:///home/avishka/.serverless/releases/4.1.21/package/dist/sf-core.js:958:45215\n    at async processNodeAndHandleCompletion (file:///home/avishka/.serverless/releases/4.1.21/package/dist/sf-core.js:958:38814)",
+      "code": "MISSING_VARIABLE_RESULT"
     },
-    "params": {},
     "machineId": "6d8da1fbb3b4301df9301c574e0407c5",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",
@@ -777,8 +164,8 @@
     "userName": "avsihkadulara23",
     "subscription": null,
     "userEmail": "avishkadulara9@gmail.com",
-    "versionSf": "4.1.19",
-    "serviceProviderAwsCfStackName": "notes-api-dev",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "520539193170",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:520539193170:stack/my-serverless-project-dev/ec0dcbb0-d7df-11ee-9da6-0eb108a0e049",
     "serviceProviderAwsCfStackCreated": "2024-03-01T15:25:23.380Z",
     "serviceProviderAwsCfStackUpdated": "2024-06-07T07:30:07.179Z",

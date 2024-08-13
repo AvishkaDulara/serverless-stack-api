@@ -3,7 +3,7 @@
   "version": "2.2.0",
   "description": "A Node.js starter for Serverless Framework with ES6 and TypeScript support",
   "main": "handler.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "serverless-bundle test"
   },
@@ -19,6 +19,8 @@
     "serverless-offline": "^5.3.3"
   },
   "dependencies": {
-    "stripe": "^16.6.0"
+    "aws-sdk": "^2.1672.0",
+    "stripe": "^16.6.0",
+    "uuid": "^10.0.0"
   }
 }
